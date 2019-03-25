@@ -19,7 +19,7 @@ console.log(otherValue)
 
 //Lecture Challenge: Create a function to convert farenheit to celsius
 
-let farenheitToCelsius = function(farenheitTemp){
+let farenheitToCelsius = function (farenheitTemp) {
     return (farenheitTemp - 32) * (5 / 9)
 }
 
