@@ -56,5 +56,15 @@ const deleteTodo = function (todos, todoText) {
     }
 }
 
-deleteTodo(todos, 'Learn js')
-console.log(todos)
+/* deleteTodo(todos, 'Learn js')
+console.log(todos) */
+
+// Lecture challenge, filter the notes by completion
+
+const getThingsToDo = function (todos) {
+    return todos.filter((todo) => {
+        return !todo.completed
+    })
+}
+
+console.log(getThingsToDo(todos))

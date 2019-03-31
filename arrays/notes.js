@@ -20,8 +20,8 @@ notes.unshift('First note') */
 notes.splice(1, 0, 'New second note') // Works as an index insertion
 notes.splice(1, 1, 'New new second note') // Works as an index replacement just like notes[1] = newValuew */
 
-console.log(notes.length);
-console.log(notes);
+/* console.log(notes.length);
+console.log(notes); */
 
 // There is no way to stop or break a forEach()
 // Passing a function to a function is a Callback
@@ -54,7 +54,6 @@ console.log(index) */
 
 /* const findNote = function (notes, noteTitle) {
     const index = notes.findIndex((note) => {
-        console.log(note.title, note)
         return note.title.toLowerCase() === noteTitle.toLowerCase()
     })
     return notes[index]
@@ -63,11 +62,27 @@ console.log(index) */
 // Find returns the match and no the index
 const findNote = function (notes, noteTitle) {
     return notes.find((note) => {
-        console.log(note.title, note)
         return note.title.toLowerCase() === noteTitle.toLowerCase()
     })
 }
 
+const findNotes = function (notes, query) {
+    return notes.filter((note) => {
+        const titleMatch = note.title.toLowerCase().includes(query.toLowerCase())
+        const bodyMatch = note.body.toLocaleLowerCase().includes(query.toLowerCase())
+        return titleMatch || bodyMatch
+    })
+    
+}
+
+console.log(findNotes(notes, 'ne'))
+
+/* const filteredNotes = notes.filter((note) => {
+    const titleMatch = note.title.toLowerCase().includes('ne')
+    const bodyMatch = note.body.toLocaleLowerCase().includes('ne')
+    return titleMatch || bodyMatch
+})
+console.log(filteredNotes); */
 // Like objects, arrays are also passed by reference
 const note = findNote(notes, 'office modification')
 console.log(note)
