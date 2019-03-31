@@ -20,3 +20,10 @@ todos.forEach((todo,index)=>{
     const pos = index + 1
     console.log(`${pos}. ${todo}`);
 })
+
+// Lecture challenge use for loop and print the same as the forEach loop
+
+for (let index = 0; index < todos.length; index++) {
+    const pos = index + 1
+    console.log(`${pos}. ${todos[index]}`);
+}

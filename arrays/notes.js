@@ -18,3 +18,12 @@ notes.forEach((note, index) => {
     console.log(note);
     console.log(index);
 })
+
+// Unlike forEach, for loops allows early termination
+for (let count = 2; count >= 0; count--) {
+    console.log(`Counting... ${count}`);
+}
+
+for (let count = 0; count < notes.length; count++) {
+    console.log(notes[count]);
+}
