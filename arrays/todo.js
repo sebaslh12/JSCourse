@@ -67,4 +67,19 @@ const getThingsToDo = function (todos) {
     })
 }
 
-console.log(getThingsToDo(todos))
+//console.log(getThingsToDo(todos))
+
+// Lecture challenge, sort the array by completion (uncompleted ones first)
+const sortTodos = function (todos) {
+    todos.sort((a, b) => {
+        if (a.completed > b.completed)
+            return 1
+        else if (b.completed > a.completed)
+            return -1
+        else
+            return 0
+    })
+}
+
+sortTodos(todos)
+console.log(todos)

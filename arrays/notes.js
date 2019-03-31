@@ -72,11 +72,7 @@ const findNotes = function (notes, query) {
         const bodyMatch = note.body.toLocaleLowerCase().includes(query.toLowerCase())
         return titleMatch || bodyMatch
     })
-    
 }
-
-console.log(findNotes(notes, 'ne'))
-
 /* const filteredNotes = notes.filter((note) => {
     const titleMatch = note.title.toLowerCase().includes('ne')
     const bodyMatch = note.body.toLocaleLowerCase().includes('ne')
@@ -84,5 +80,21 @@ console.log(findNotes(notes, 'ne'))
 })
 console.log(filteredNotes); */
 // Like objects, arrays are also passed by reference
-const note = findNote(notes, 'office modification')
-console.log(note)
+/* const note = findNote(notes, 'office modification')
+console.log(note) */
+
+//console.log(findNotes(notes, 'ne'))
+
+const sortNotes = function (notes) {
+    notes.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase())
+            return -1
+        else if (b.title.toLowerCase() < a.title.toLowerCase())
+            return 1
+        else
+            return 0
+    })
+}
+
+sortNotes(notes) // Modification by reference
+console.log(notes);
