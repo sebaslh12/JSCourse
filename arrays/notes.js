@@ -11,3 +11,10 @@ notes.splice(1, 1, 'New new second note') // Works as an index replacement just 
 
 console.log(notes.length);
 console.log(notes);
+
+// There is no way to stop or break a forEach()
+// Passing a function to a function is a Callback
+notes.forEach((note, index) => {
+    console.log(note);
+    console.log(index);
+})

@@ -13,3 +13,10 @@ todos.push('Conquer the world')
 todos.shift()
 
 console.log(`You have ${todos.length} todos`);
+
+// Lecture challenge, print all of the todos with this format 'index. todo'
+
+todos.forEach((todo,index)=>{
+    const pos = index + 1
+    console.log(`${pos}. ${todo}`);
+})
