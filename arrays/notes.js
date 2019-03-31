@@ -1,4 +1,15 @@
-const notes = ['Note 1', 'Note 2', 'Note 3']
+const notes = [
+    {
+        title: 'My next trip',
+        body: 'I would like to go to Spain'
+    }, {
+        title: 'My next job',
+        body: 'Study'
+    }, {
+        title: 'Office modification',
+        body: 'Get a new seat'
+    }
+]
 
 /* console.log(notes.pop())
 notes.push('Note 4')
@@ -25,5 +36,18 @@ for (let count = 2; count >= 0; count--) {
 }
 
 for (let count = 0; count < notes.length; count++) {
-    console.log(notes[count]);
+    //console.log(notes[count]);
 }
+
+let someObject = {}
+let otherObject = someObject
+console.log(someObject === otherObject) // true, an object is equal only to itself
+console.log({} === {}) // false
+console.log(notes.indexOf({})) //-1, indexOf can't find an object ocurrence inside an array
+
+// To find an object occurrence we need to use findIndex and pass how the objects should be compared
+const index = notes.findIndex((note) => {
+    return note.title === 'My next job'
+})
+
+console.log(index)
