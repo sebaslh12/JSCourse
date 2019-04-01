@@ -21,30 +21,33 @@ const todos = [
     }
 ]
 
-/* const ps = document.querySelectorAll('p')
+const filters = {
+    searchText: ''
+}
 
-ps.forEach((p) => {
-    if (p.textContent.toLowerCase().includes('the')) {
-        p.remove()
-    }
-}) */
+const todosDiv = document.querySelector('#todos')
 
-// Lecture challenge, add p per each todo text value. Add a summary that says how many todos you have left
-const body = document.querySelector('body')
+const renderTodos = function (todos, filters) {
+    const filteredTodos = todos.filter((todo) => {
+        return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
 
-const unfinishedTodos = todos.filter((todo) => {
-    return !todo.completed
-})
+    const unfinishedTodos = filteredTodos.filter((todo) => {
+        return !todo.completed
+    })
+    
+    todosDiv.innerHTML = ''
+    const summary = document.createElement('h2')
+    summary.textContent = `You have ${unfinishedTodos.length} todos left`
+    todosDiv.appendChild(summary)
+    filteredTodos.forEach((todo) => {
+        const todoParagraph = document.createElement('p')
+        todoParagraph.textContent = todo.text
+        todosDiv.appendChild(todoParagraph)
+    })
+}
 
-const summary = document.createElement('h2')
-summary.textContent = `You have ${unfinishedTodos.length} todos left`
-body.appendChild(summary)
-
-todos.forEach((todo) => {
-    const todoParagraph = document.createElement('p')
-    todoParagraph.textContent = todo.text
-    body.appendChild(todoParagraph)
-})
+renderTodos(todos, filters)
 
 // Lecture challenge, add a listener to the add todo button
 document.querySelector('#add-todo').addEventListener('click', function (e) {
@@ -54,4 +57,9 @@ document.querySelector('#add-todo').addEventListener('click', function (e) {
 // Lecture challenge, listen for todo text input change
 document.querySelector('#new-todo').addEventListener('input', function(e){
     console.log(e.target.value)
+})
+
+document.querySelector('#search-text').addEventListener('input', function(e){
+    filters.searchText = e.target.value
+    renderTodos(todos, filters)
 })
