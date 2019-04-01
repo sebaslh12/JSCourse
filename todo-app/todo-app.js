@@ -50,3 +50,8 @@ todos.forEach((todo) => {
 document.querySelector('#add-todo').addEventListener('click', function (e) {
     console.log('Add a new todo')
 })
+
+// Lecture challenge, listen for todo text input change
+document.querySelector('#new-todo').addEventListener('input', function(e){
+    console.log(e.target.value)
+})
