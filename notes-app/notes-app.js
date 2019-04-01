@@ -17,14 +17,18 @@ const notes = [
 p.remove() */
 
 // Query all returns an array with the matching results
-const ps = document.querySelectorAll('p')
+/* const ps = document.querySelectorAll('p')
 ps.forEach((p) => {
     //console.log(p.textContent)
     p.textContent = '******'
-})
+}) */
 
 // Add a new element
-const newParagraph = document.createElement('p')
+/* const newParagraph = document.createElement('p')
 
 newParagraph.textContent = 'This is a new element from JavaScript'
-document.querySelector('body').appendChild(newParagraph)
+document.querySelector('body').appendChild(newParagraph) */
+
+document.querySelector('button').addEventListener('click', function (e) {
+    e.target.textContent = 'The button was clicked'
+})

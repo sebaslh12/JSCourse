@@ -45,3 +45,8 @@ todos.forEach((todo) => {
     todoParagraph.textContent = todo.text
     body.appendChild(todoParagraph)
 })
+
+// Lecture challenge, add a listener to the add todo button
+document.querySelector('button').addEventListener('click', function (e) {
+    console.log('Add a new todo')
+})
