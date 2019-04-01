@@ -35,17 +35,23 @@ document.querySelector('#create-note').addEventListener('click', function (e) {
     e.target.textContent = 'The button was clicked'
 })
 
-document.querySelector('#remove-all').addEventListener('click', function (e) {
-    document.querySelectorAll('.note').forEach((note) => {
-        note.remove()
-    })
-})
-
-
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderNotes(notes, filters)
 })
+
+document.querySelector('#name-form').addEventListener('submit', function(e){
+    e.preventDefault()
+    // Form fields can be accesed by their name, all form elements are inside the form's elements property
+    console.log(e.target.elements.firstName.value)
+})
+
+/* document.querySelector('#remove-all').addEventListener('click', function (e) {
+    document.querySelectorAll('.note').forEach((note) => {
+        note.remove()
+    })
+})
+ */
 
 
 // Query selector returns the first occurrence, its also used to get elements by id
