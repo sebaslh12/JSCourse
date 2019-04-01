@@ -40,11 +40,15 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#name-form').addEventListener('submit', function(e){
+document.querySelector('#for-fun').addEventListener('change', function(e){
+    console.log(e.target.checked)
+})
+
+/* document.querySelector('#name-form').addEventListener('submit', function(e){
     e.preventDefault()
     // Form fields can be accesed by their name, all form elements are inside the form's elements property
     console.log(e.target.elements.firstName.value)
-})
+}) */
 
 /* document.querySelector('#remove-all').addEventListener('click', function (e) {
     document.querySelectorAll('.note').forEach((note) => {
