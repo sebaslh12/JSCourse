@@ -12,8 +12,44 @@ const notes = [
     }
 ]
 
+const filters = {
+    searchText: ''
+}
+
+const renderNotes = function (notes, filters) {
+    const filteredNotes = notes.filter((note) => {
+        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+    const notesDiv = document.querySelector('#notes')
+    notesDiv.innerHTML = ''
+    filteredNotes.forEach((note) => {
+        const noteEl = document.createElement('p')
+        noteEl.textContent = note.title
+        notesDiv.appendChild(noteEl)
+    })
+}
+
+renderNotes(notes, filters)
+
+document.querySelector('#create-note').addEventListener('click', function (e) {
+    e.target.textContent = 'The button was clicked'
+})
+
+document.querySelector('#remove-all').addEventListener('click', function (e) {
+    document.querySelectorAll('.note').forEach((note) => {
+        note.remove()
+    })
+})
+
+
+document.querySelector('#search-text').addEventListener('input', function (e) {
+    filters.searchText = e.target.value
+    renderNotes(notes, filters)
+})
+
+
 // Query selector returns the first occurrence, its also used to get elements by id
-/* const p = document.querySelector('p')
+/* const p = document.querySelector('p')∫
 p.remove() */
 
 // Query all returns an array with the matching results, its also used to get elements by class since you can have multiple elements with the class name
@@ -29,17 +65,3 @@ ps.forEach((p) => {
 newParagraph.textContent = 'This is a new element from JavaScript'
 document.querySelector('body').appendChild(newParagraph) */
 
-document.querySelector('#create-note').addEventListener('click', function (e) {
-    e.target.textContent = 'The button was clicked'
-})
-
-document.querySelector('#remove-all').addEventListener('click', function (e) {
-    document.querySelectorAll('.note').forEach((note) => {
-        note.remove()
-    })
-})
-
-
-document.querySelector('#search-text').addEventListener('input', function(e){
-    console.log(e.target.value)
-})
