@@ -12,11 +12,11 @@ const notes = [
     }
 ]
 
-// Query selector returns the first occurrence
+// Query selector returns the first occurrence, its also used to get elements by id
 /* const p = document.querySelector('p')
 p.remove() */
 
-// Query all returns an array with the matching results
+// Query all returns an array with the matching results, its also used to get elements by class since you can have multiple elements with the class name
 /* const ps = document.querySelectorAll('p')
 ps.forEach((p) => {
     //console.log(p.textContent)
@@ -29,6 +29,12 @@ ps.forEach((p) => {
 newParagraph.textContent = 'This is a new element from JavaScript'
 document.querySelector('body').appendChild(newParagraph) */
 
-document.querySelector('button').addEventListener('click', function (e) {
+document.querySelector('#create-note').addEventListener('click', function (e) {
     e.target.textContent = 'The button was clicked'
+})
+
+document.querySelector('#remove-all').addEventListener('click', function (e) {
+    document.querySelectorAll('.note').forEach((note) => {
+        note.remove()
+    })
 })
