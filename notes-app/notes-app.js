@@ -1,19 +1,35 @@
 // DOM - Document Object Model
-const notes = [
-    {
-        title: 'My next trip',
-        body: 'I would like to go to Spain'
-    }, {
-        title: 'My next job',
-        body: 'Study'
-    }, {
-        title: 'Office modification',
-        body: 'Get a new seat'
-    }
-]
+let notes = []
 
 const filters = {
     searchText: ''
+}
+
+// CRUD operations - Create, Read, Update, Delete
+
+// localStorage.setItem('location', 'Cali')
+
+// console.log(localStorage.getItem('location'))
+
+// localStorage.removeItem('location')
+
+// localStorage.clear()
+
+/* const user = {
+    name: 'Sebastian',
+    Age: 24
+} */
+
+// JSON : JavaScript Object Notation
+/* localStorage.setItem('user', JSON.stringify(user))
+const userJSON = JSON.parse(localStorage.getItem('user'))
+console.log(userJSON.name) */
+
+
+const notesJSON = localStorage.getItem('notes')
+
+if (notesJSON) {
+    notes = JSON.parse(notesJSON)
 }
 
 const renderNotes = function (notes, filters) {
@@ -24,7 +40,7 @@ const renderNotes = function (notes, filters) {
     notesDiv.innerHTML = ''
     filteredNotes.forEach((note) => {
         const noteEl = document.createElement('p')
-        noteEl.textContent = note.title
+        noteEl.textContent = note.title ? note.title : 'Unnamed note'
         notesDiv.appendChild(noteEl)
     })
 }
@@ -32,7 +48,12 @@ const renderNotes = function (notes, filters) {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
-    e.target.textContent = 'The button was clicked'
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, filters)
 })
 
 document.querySelector('#search-text').addEventListener('input', function (e) {
@@ -40,7 +61,7 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#filter-by').addEventListener('change', function(e){
+document.querySelector('#filter-by').addEventListener('change', function (e) {
     console.log(e.target.value)
 })
 

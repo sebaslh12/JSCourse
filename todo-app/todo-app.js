@@ -1,25 +1,10 @@
-const todos = [
-    {
-        text: 'Learn Js',
-        completed: true
-    },
-    {
-        text: 'Learn Node',
-        completed: true
-    },
-    {
-        text: 'Finish RnR course',
-        completed: false
-    },
-    {
-        text: 'Leave this country',
-        completed: false
-    },
-    {
-        text: 'Get a cat',
-        completed: false
-    }
-]
+let todos = []
+
+
+const todosJSON = localStorage.getItem('todos')
+if (todosJSON) {
+    todos = JSON.parse(todosJSON)
+}
 
 const filters = {
     searchText: '',
@@ -30,7 +15,7 @@ const todosDiv = document.querySelector('#todos')
 
 const renderTodos = function (todos, filters) {
     const filteredTodos = todos.filter((todo) => {
-        const searchTextMatch =  todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+        const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
         return searchTextMatch && hideCompletedMatch
     })
@@ -67,6 +52,7 @@ document.querySelector('#todo-form').addEventListener('submit', function (e) {
     }
     todos.push(newTodo)
     formElements.todoText.value = ''
+    localStorage.setItem('todos', JSON.stringify(todos))
     renderTodos(todos, filters)
 })
 
