@@ -16,6 +16,7 @@ document.querySelector('#todo-form').addEventListener('submit', function (e) {
     e.preventDefault()
     const formElements = e.target.elements
     const newTodo = {
+        id: uuidv4(),
         text: formElements.todoText.value,
         completed: false
     }
