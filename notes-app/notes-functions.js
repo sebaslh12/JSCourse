@@ -25,6 +25,8 @@ const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter((note) => {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
     })
+    // This statement triggers the browser debugger
+    // debugger 
     const notesDiv = document.querySelector('#notes')
     notesDiv.innerHTML = ''
     filteredNotes.forEach((note) => {
