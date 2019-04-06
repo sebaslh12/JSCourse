@@ -24,11 +24,12 @@ const removeNote = function (id) {
 // Generate the DOM structure for a note
 const generateNoteDOM = function (note) {
     const noteEl = document.createElement('div')
-    const textEl = document.createElement('span')
+    const textEl = document.createElement('a')
     const button = document.createElement('button')
 
     // Setup the note title text
     textEl.textContent = note.title ? note.title : 'Unnamed note'
+    textEl.setAttribute('href', `/edit.html#${note.id}`)
     // Setup the delete note button text
     button.textContent = 'x'
     button.addEventListener('click', function () {
