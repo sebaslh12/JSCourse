@@ -11,6 +11,35 @@ const notes = [
     }
 ]
 
+// Find returns the matching element
+const findNote = function (notes, noteTitle) {
+    return notes.find((note) => {
+        return note.title.toLowerCase() === noteTitle.toLowerCase()
+    })
+}
+
+const findNotes = function (notes, query) {
+    return notes.filter((note) => {
+        const titleMatch = note.title.toLowerCase().includes(query.toLowerCase())
+        const bodyMatch = note.body.toLocaleLowerCase().includes(query.toLowerCase())
+        return titleMatch || bodyMatch
+    })
+}
+
+const sortNotes = function (notes) {
+    notes.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase())
+            return -1
+        else if (b.title.toLowerCase() < a.title.toLowerCase())
+            return 1
+        else
+            return 0
+    })
+}
+
+sortNotes(notes) // Modification by reference
+console.log(notes);
+
 /* console.log(notes.pop())
 notes.push('Note 4')
 console.log(notes.shift());
@@ -59,20 +88,6 @@ console.log(index) */
     return notes[index]
 } */
 
-// Find returns the match and no the index
-const findNote = function (notes, noteTitle) {
-    return notes.find((note) => {
-        return note.title.toLowerCase() === noteTitle.toLowerCase()
-    })
-}
-
-const findNotes = function (notes, query) {
-    return notes.filter((note) => {
-        const titleMatch = note.title.toLowerCase().includes(query.toLowerCase())
-        const bodyMatch = note.body.toLocaleLowerCase().includes(query.toLowerCase())
-        return titleMatch || bodyMatch
-    })
-}
 /* const filteredNotes = notes.filter((note) => {
     const titleMatch = note.title.toLowerCase().includes('ne')
     const bodyMatch = note.body.toLocaleLowerCase().includes('ne')
@@ -85,16 +100,3 @@ console.log(note) */
 
 //console.log(findNotes(notes, 'ne'))
 
-const sortNotes = function (notes) {
-    notes.sort((a, b) => {
-        if (a.title.toLowerCase() < b.title.toLowerCase())
-            return -1
-        else if (b.title.toLowerCase() < a.title.toLowerCase())
-            return 1
-        else
-            return 0
-    })
-}
-
-sortNotes(notes) // Modification by reference
-console.log(notes);
