@@ -20,6 +20,15 @@ const removeTodo = function (id) {
         todos.splice(todoIndex, 1)
 }
 
+const toggleCompletion = function(id){
+    const todo = todos.find((todo)=>{
+        return todo.id === id
+    })
+
+    if(todo)
+        todo.completed = !todo.completed
+}
+
 const generateTodoDOM = function (todo) {
     const todoEl = document.createElement('div')
     const completeCheckbox = document.createElement('input')
@@ -28,9 +37,15 @@ const generateTodoDOM = function (todo) {
 
     // Setup the checkbox type
     completeCheckbox.setAttribute('type', 'checkbox')
+    completeCheckbox.checked = todo.completed
+    completeCheckbox.addEventListener('change', function (e) {
+        toggleCompletion(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
     // Setup the todo text
     todoText.textContent = todo.text
-    // Setup the delete todo button text
+    // Setup the delete todo button
     deleteButton.textContent = 'x'
     deleteButton.addEventListener('click', function () {
         removeTodo(todo.id)
