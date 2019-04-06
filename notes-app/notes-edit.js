@@ -1,6 +1,6 @@
 const noteId = location.hash.substring(1)
-const notes = getSavedNotes()
-const note = notes.find((note) => {
+let notes = getSavedNotes()
+let note = notes.find((note) => {
     return note.id === noteId
 })
 const titleInput = document.querySelector('#note-title')
@@ -27,4 +27,18 @@ removeElement.addEventListener('click', function () {
     removeNote(noteId)
     saveNotes(notes)
     location.assign('/')
+})
+
+window.addEventListener('storage', function (e) {
+    if (e.key === 'notes') {
+        notes = JSON.parse(e.newValue)
+        note = notes.find((note) => {
+            return note.id === noteId
+        })
+        if (!note)
+            location.assign('/')
+
+        titleInput.value = note.title
+        bodyText.value = note.body
+    }
 })
