@@ -12,9 +12,23 @@ const saveTodos = function (todos) {
 }
 
 const generateTodoDOM = function (todo) {
-    const todoParagraph = document.createElement('p')
-    todoParagraph.textContent = todo.text
-    return todoParagraph
+    const todoEl = document.createElement('div')
+    const completeCheckbox = document.createElement('input')
+    const todoText = document.createElement('span')
+    const deleteButton = document.createElement('button')
+
+    // Setup the checkbox type
+    completeCheckbox.setAttribute('type', 'checkbox')
+    // Setup the todo text
+    todoText.textContent = todo.text
+    // Setup the delete todo button text
+    deleteButton.textContent = 'x'
+
+    todoEl.appendChild(completeCheckbox)
+    todoEl.appendChild(todoText)
+    todoEl.appendChild(deleteButton)
+
+    return todoEl
 }
 
 const generateSummaryDOM = function (unfinishedTodos) {
