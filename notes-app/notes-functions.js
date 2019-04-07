@@ -1,3 +1,7 @@
+'use strict'
+
+// use strict removes potentially buggy behaviour, it's impossible to leak global variables nor to use reserved identifiers of future Javascript features nor to use deprecated functions
+
 // Read existing notes from localstorage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
