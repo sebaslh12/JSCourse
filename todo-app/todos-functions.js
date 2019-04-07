@@ -1,5 +1,5 @@
 
-const getSavedTodos = function () {
+const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
     if (todosJSON)
         return JSON.parse(todosJSON)
@@ -7,29 +7,23 @@ const getSavedTodos = function () {
         return []
 }
 
-const saveTodos = function (todos) {
+const saveTodos = (todos) => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
-const removeTodo = function (id) {
-    const todoIndex = todos.findIndex((todo) => {
-        return todo.id === id
-    })
-
+const removeTodo = (id) => {
+    const todoIndex = todos.findIndex((todo) => todo.id === id)
     if (todoIndex > -1)
         todos.splice(todoIndex, 1)
 }
 
-const toggleCompletion = function(id){
-    const todo = todos.find((todo)=>{
-        return todo.id === id
-    })
-
-    if(todo)
+const toggleCompletion = (id) => {
+    const todo = todos.find((todo) => todo.id === id)
+    if (todo)
         todo.completed = !todo.completed
 }
 
-const generateTodoDOM = function (todo) {
+const generateTodoDOM = (todo) => {
     const todoEl = document.createElement('div')
     const completeCheckbox = document.createElement('input')
     const todoText = document.createElement('span')
@@ -38,7 +32,7 @@ const generateTodoDOM = function (todo) {
     // Setup the checkbox type
     completeCheckbox.setAttribute('type', 'checkbox')
     completeCheckbox.checked = todo.completed
-    completeCheckbox.addEventListener('change', function (e) {
+    completeCheckbox.addEventListener('change', () => {
         toggleCompletion(todo.id)
         saveTodos(todos)
         renderTodos(todos, filters)
@@ -47,7 +41,7 @@ const generateTodoDOM = function (todo) {
     todoText.textContent = todo.text
     // Setup the delete todo button
     deleteButton.textContent = 'x'
-    deleteButton.addEventListener('click', function () {
+    deleteButton.addEventListener('click', () => {
         removeTodo(todo.id)
         saveTodos(todos)
         renderTodos(todos, filters)
@@ -60,13 +54,13 @@ const generateTodoDOM = function (todo) {
     return todoEl
 }
 
-const generateSummaryDOM = function (unfinishedTodos) {
+const generateSummaryDOM = (unfinishedTodos) => {
     const summary = document.createElement('h2')
     summary.textContent = `You have ${unfinishedTodos.length} todos left`
     return summary
 }
 
-const renderTodos = function (todos, filters) {
+const renderTodos = (todos, filters) => {
     const todosDiv = document.querySelector('#todos')
     const filteredTodos = todos.filter((todo) => {
         const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -74,13 +68,9 @@ const renderTodos = function (todos, filters) {
         return searchTextMatch && hideCompletedMatch
     })
 
-    const unfinishedTodos = filteredTodos.filter((todo) => {
-        return !todo.completed
-    })
+    const unfinishedTodos = filteredTodos.filter((todo) => !todo.completed)
 
     todosDiv.innerHTML = ''
     todosDiv.appendChild(generateSummaryDOM(unfinishedTodos))
-    filteredTodos.forEach((todo) => {
-        todosDiv.appendChild(generateTodoDOM(todo))
-    })
+    filteredTodos.forEach((todo) => todosDiv.appendChild(generateTodoDOM(todo)))
 }
