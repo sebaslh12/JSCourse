@@ -1,16 +1,20 @@
 let notes = getSavedNotes()
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    sortBy: 'byEdited'
 }
 
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
+    const timestamp = moment().valueOf()
     const newNote = {
         id: uuidv4(),
         title: '',
-        body: ''
+        body: '',
+        createdAt: timestamp,
+        updatedAt: timestamp
     }
     notes.push(newNote)
     saveNotes(notes)
@@ -23,7 +27,8 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
 })
 
 document.querySelector('#filter-by').addEventListener('change', function (e) {
-    console.log(e.target.value)
+    filters.sortBy = e.target.value
+    renderNotes(notes, filters)
 })
 
 window.addEventListener('storage', function (e) {
@@ -94,3 +99,4 @@ ps.forEach((p) => {
 newParagraph.textContent = 'This is a new element from JavaScript'
 document.querySelector('body').appendChild(newParagraph) */
 
+// Unix epoch - January 1s 1970 00:00:00, timestamps before of this number are negative numbers, after this one are positive numbers. This is the 0 date value.
