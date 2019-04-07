@@ -3,6 +3,8 @@
 // A 90 - 100, B 80 - 89, C 70 - 79, D 60 - 69, F 0 - 59 
 
 const gradeCalc = function (studentScore, totalScore) {
+    if (typeof studentScore !== 'number' || typeof totalScore !== 'number')
+        throw Error('Both arguments have to be numbers')
     const gradePercent = (studentScore / totalScore) * 100
     let letterGrade = ''
     if (gradePercent >= 90)
@@ -19,7 +21,11 @@ const gradeCalc = function (studentScore, totalScore) {
     return `You got a ${letterGrade} (${gradePercent}%)!`
 }
 
-const aGrade = gradeCalc(20, 20)
-console.log(aGrade);
-const cGrade = gradeCalc(15, 20)
-console.log(cGrade);
+try {
+    const aGrade = gradeCalc(20, 20)
+    console.log(aGrade)
+    const cGrade = gradeCalc(15, 20)
+    console.log(cGrade)
+} catch (e) {
+    console.log(e.message)
+}
