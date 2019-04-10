@@ -18,27 +18,35 @@ Hangman.prototype.getPuzzle = function () {
 }
 
 Hangman.prototype.makeAGuess = function (guess) {
-    if (!this.guessedLetters.includes(guess)) {
+    guess = guess.toLowerCase()
+    const isUnique = !this.guessedLetters.includes(guess)
+    const isBadGuess = !this.word.includes(guess)
+    if (isUnique) {
         if (this.remainingGuesses > 0) {
-            this.guessedLetters.push(guess.toLowerCase())
-            if (!this.word.includes(guess))
-                this.remainingGuesses += -1
+            this.guessedLetters.push(guess)
         } else {
             console.log(`You've used all your attempts`)
         }
     } else {
         console.log('Letter already used')
     }
+
+    if (isUnique && isBadGuess)
+        this.remainingGuesses--
 }
 
-const game1 = new Hangman('Cat', 5)
-game1.makeAGuess('s')
-game1.makeAGuess('a')
-console.log(game1.getPuzzle())
+const game1 = new Hangman('Cat', 2)
+
+
 
 const game2 = new Hangman('New Jersey', 6)
-game2.makeAGuess('n')
-game2.makeAGuess('w')
-game2.makeAGuess('j')
-game2.makeAGuess('E')
-console.log(game2.getPuzzle())
+
+console.log(game1.getPuzzle())
+console.log(game1.remainingGuesses)
+
+document.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeAGuess(guess)
+    console.log(game1.getPuzzle())
+    console.log(game1.remainingGuesses)
+})
