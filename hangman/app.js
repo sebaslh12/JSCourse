@@ -9,3 +9,20 @@
 // Object: myObject --> Object.prototype --> null
 // Array: myArray --> Array.prototype --> Object.prototype --> null, Arrays are customized Objects
 // Function: myFunc --> Function.prototype --> Object.prototype --> null, Functions like Arrays are customized Objects
+
+const puzzle = document.querySelector('#puzzle')
+const guessesEl = document.querySelector('#guesses')
+
+const game = new Hangman('Cat', 2)
+
+puzzle.textContent = game.getPuzzle()
+guessesEl.textContent = game.remainingGuesses
+
+document.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    game.makeAGuess(guess)
+    console.log(game.status)
+    puzzle.textContent = game.getPuzzle()
+    guessesEl.textContent = game.remainingGuesses
+})
+
