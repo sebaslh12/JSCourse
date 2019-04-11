@@ -54,11 +54,41 @@ class Person {
     }
 }
 
-const myPersonClass = new Person('Sebastian', 'Lozano', 24, ['Learning'])
-console.log(myPersonClass.getBio())
+class Employee extends Person {
+    constructor(firstName, lastName, age, position, likes = []) {
+        super(firstName, lastName, age, likes)
+        this.position = position
+    }
 
-const me = new Person('Sebastian', 'Lozano', 24, ['Videogames', 'Sleeping'])
-me.setName('Alexis Turner')
+    getBio() {
+        return `${this.firstName} ${this.lastName} is a ${this.position}.`
+    }
+
+    getYearsLeft() {
+        return 65 - this.age
+    }
+}
+
+// Lecture challenge: Create student subclass, create grade property, override bio method, create upgradeGrade method
+
+class Student extends Person {
+    constructor(firstName, lastName, age, grade, likes = []) {
+        super(firstName, lastName, age, likes)
+        this.grade = grade
+    }
+
+    getBio() {
+        const status = this.grade >= 70 ? 'passing' : 'failing'
+        return `${this.firstName} is ${status} the class`
+    }
+
+    updateGrade(grade) {
+        this.grade += grade
+    }
+}
+
+const me = new Student('Sebastian', 'Lozano', 24, 60)
+
 console.log(me.getBio())
-const clancey = new Person('Clancey', 'Turner', 51)
-console.log(clancey.getBio())
+me.updateGrade(15)
+console.log(me.getBio())
