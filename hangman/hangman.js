@@ -23,15 +23,9 @@ Hangman.prototype.makeAGuess = function (guess) {
     const isUnique = !this.guessedLetters.includes(guess)
     const isBadGuess = !this.word.includes(guess)
     if (isUnique) {
-        if (this.remainingGuesses) {
+        if (this.remainingGuesses)
             this.guessedLetters.push(guess)
-        } else {
-            console.log(`You've used all your attempts`)
-        }
-    } else {
-        console.log('Letter already used')
     }
-
     if (isUnique && isBadGuess && this.remainingGuesses)
         this.remainingGuesses--
 
@@ -44,5 +38,16 @@ Hangman.prototype.calculateStatus = function () {
     } else {
         const isFinished = this.word.every((letter) => this.guessedLetters.includes(letter))
         this.status = isFinished ? 'finished' : this.status
+    }
+    this.getStatusMessage()
+}
+
+Hangman.prototype.getStatusMessage = function () {
+    if (this.status === 'failed') {
+        return `Nice try! The word was "${this.word.join('')}".`
+    } else if (this.status === 'finished') {
+        return `Great work you guessed the word!`
+    } else {
+        return `Guesses left: ${this.remainingGuesses}`
     }
 }
