@@ -1,6 +1,6 @@
 // Lecture challenge: create a Hangman constructor function
 class Hangman {
-    
+
     constructor(word, remainingGuesses) {
         this.word = word.toLowerCase().split('');
         this.guessedLetters = [];
@@ -37,7 +37,7 @@ class Hangman {
             this.status = 'failed';
         }
         else {
-            const isFinished = this.word.every((letter) => this.guessedLetters.includes(letter));
+            const isFinished = this.word.every((letter) => this.guessedLetters.includes(letter) || letter === ' ');
             this.status = isFinished ? 'finished' : this.status;
         }
     }
