@@ -8,7 +8,7 @@ class Hangman {
         this.status = 'playing';
     }
 
-    getPuzzle() {
+    get puzzle() {
         let wordPuzzle = this.word.join('');
         this.word.forEach((letter) => {
             if (!this.guessedLetters.includes(letter)) {
@@ -40,10 +40,9 @@ class Hangman {
             const isFinished = this.word.every((letter) => this.guessedLetters.includes(letter));
             this.status = isFinished ? 'finished' : this.status;
         }
-        this.getStatusMessage();
     }
 
-    getStatusMessage() {
+    get statusMessage() {
         if (this.status === 'failed') {
             return `Nice try! The word was "${this.word.join('')}".`;
         }
