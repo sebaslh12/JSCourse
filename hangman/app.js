@@ -19,10 +19,24 @@ puzzle.textContent = game.puzzle
 guessesEl.textContent = game.statusMessage
 
 
-document.addEventListener('keypress', function (e) {
+document.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode)
     game.makeAGuess(guess)
     puzzle.textContent = game.puzzle
     guessesEl.textContent = game.statusMessage
 })
 
+// HTTP (Hypertext Transfer Protocol)
+// Request - What we want
+// Response - What was actually done
+
+const request = new XMLHttpRequest()
+
+request.addEventListener('readystatechange', (e) => {
+    if (e.target.readyState === 4) {
+        const data = JSON.parse(e.target.responseText)
+        console.log(data.puzzle)
+    }
+})
+request.open('GET', 'http://puzzle.mead.io/puzzle')
+request.send()
