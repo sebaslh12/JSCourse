@@ -26,11 +26,11 @@ document.addEventListener('keypress', (e) => {
     guessesEl.textContent = game.statusMessage
 })
 
-// Passing a function as an argument (callback)
+// Passing a function as an argument (callback) - async
 getPuzzle((error, puzzle) => {
-    if(error){
+    if (error) {
         console.log(`Error: ${error}`)
-    } else{
+    } else {
         console.log(puzzle)
     }
 })

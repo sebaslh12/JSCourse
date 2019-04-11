@@ -18,3 +18,16 @@ const getPuzzle = (callback) => {
     request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=3')
     request.send()
 }
+
+/* const getPuzzleSync = () => {
+    const request = new XMLHttpRequest()
+    // Second paramter is an async flag, by default is true, deprecated
+    request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=3', false)
+    request.send()
+    if (request.readyState === 4 && request.status == 200) {
+        const data = JSON.parse(request.responseText)
+        return data.puzzle
+    } else if (request.readyState === 4) {
+        throw new Error('Things did not go well')
+    }
+} */
