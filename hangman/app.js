@@ -12,20 +12,29 @@
 
 const puzzle = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
+const resetEl = document.querySelector('#reset')
+let game
 
-const game = new Hangman('Car Parts', 2)
+const render = () => {
+    puzzle.textContent = game.puzzle
+    guessesEl.textContent = game.statusMessage
+}
 
-puzzle.textContent = game.puzzle
-guessesEl.textContent = game.statusMessage
-
+const startGame = async () => {
+    const puzzle = await getPuzzle('2')
+    game = new Hangman(puzzle, 5)
+    render()
+}
 
 document.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode)
     game.makeAGuess(guess)
-    puzzle.textContent = game.puzzle
-    guessesEl.textContent = game.statusMessage
+    render()
 })
 
+resetEl.addEventListener('click', startGame)
+
+startGame()
 // Passing a function as an argument (callback) - async
 /* getPuzzle('2', (error, puzzle) => {
     if (error) {
@@ -35,14 +44,14 @@ document.addEventListener('keypress', (e) => {
     }
 }) */
 
-getPuzzle('2').then((puzzle) => {
+/* getPuzzle('2').then((puzzle) => {
     console.log(puzzle)
 }).catch((error) => {
     console.log(`Error: ${error}`)
-})
+}) */
 
-getLocation().then((data) => {
+/* getLocation().then((data) => {
     console.log(data)
 }).catch((error) => {
     console.log(`Error: ${error}`)
-})
+}) */
