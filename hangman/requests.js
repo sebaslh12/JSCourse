@@ -1,5 +1,5 @@
 // Callback pattern - Async callback
-const getPuzzle = (callback) => {
+const getPuzzle = (wordCount, callback) => {
 
     // HTTP (Hypertext Transfer Protocol)
     // Request - What we want
@@ -15,7 +15,7 @@ const getPuzzle = (callback) => {
             callback('An error has taken place', undefined)
         }
     })
-    request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=3')
+    request.open('GET', `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
     request.send()
 }
 
