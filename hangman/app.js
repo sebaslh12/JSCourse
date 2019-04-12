@@ -40,3 +40,9 @@ getPuzzle('2').then((puzzle) => {
 }).catch((error) => {
     console.log(`Error: ${error}`)
 })
+
+getLocation().then((data) => {
+    console.log(data)
+}).catch((error) => {
+    console.log(`Error: ${error}`)
+})
