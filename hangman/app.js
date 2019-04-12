@@ -27,10 +27,16 @@ document.addEventListener('keypress', (e) => {
 })
 
 // Passing a function as an argument (callback) - async
-getPuzzle(2, (error, puzzle) => {
+/* getPuzzle('2', (error, puzzle) => {
     if (error) {
         console.log(`Error: ${error}`)
     } else {
         console.log(puzzle)
     }
+}) */
+
+getPuzzle('2').then((puzzle) => {
+    console.log(puzzle)
+}, (error) => {
+    console.log(`Error: ${error}`)    
 })
