@@ -60,14 +60,12 @@ const getPuzzle = async (wordCount) => {
 
 
 
-const getLocation = () => {
-    return fetch('http://ipinfo.io/json?token=cfa868b0263367', {}).then((response) => {
-        if (response.status === 200) {
-            return response.json()
-        } else {
-            throw new Error('Unable to fetch de puzzle')
-        }
-    }).then((data) => {
+const getLocation = async () => {
+    const response = await fetch('http://ipinfo.io/json?token=cfa868b0263367', {})
+    if (response.status === 200) {
+        const data = await response.json()
         return `You are currently in ${data.city}, ${data.region} ${data.country}`
-    })
+    } else {
+        throw new Error('Unable to fetch location')
+    }
 }
