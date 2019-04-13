@@ -26,7 +26,8 @@ const toggleCompletion = (id) => {
 }
 
 const generateTodoDOM = (todo) => {
-    const todoEl = document.createElement('div')
+    const todoEl = document.createElement('label')
+    const containerEl = document.createElement('div')
     const completeCheckbox = document.createElement('input')
     const todoText = document.createElement('span')
     const deleteButton = document.createElement('button')
@@ -42,15 +43,21 @@ const generateTodoDOM = (todo) => {
     // Setup the todo text
     todoText.textContent = todo.text
     // Setup the delete todo button
-    deleteButton.textContent = 'x'
+    deleteButton.textContent = 'Remove'
+    deleteButton.classList.add('button', 'button--text')
     deleteButton.addEventListener('click', () => {
         removeTodo(todo.id)
         saveTodos(todos)
         renderTodos(todos, filters)
     })
 
-    todoEl.appendChild(completeCheckbox)
-    todoEl.appendChild(todoText)
+    // Setup Container
+    todoEl.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+
+    containerEl.appendChild(completeCheckbox)
+    containerEl.appendChild(todoText)
+    todoEl.appendChild(containerEl)
     todoEl.appendChild(deleteButton)
 
     return todoEl
@@ -58,7 +65,9 @@ const generateTodoDOM = (todo) => {
 
 const generateSummaryDOM = (unfinishedTodos) => {
     const summary = document.createElement('h2')
-    summary.textContent = `You have ${unfinishedTodos.length} todos left`
+    summary.classList.add('list-title')
+    const isPlural = unfinishedTodos.length > 1 ? 'todos' : 'todo'
+    summary.textContent = `You have ${unfinishedTodos.length} ${isPlural} left`
     return summary
 }
 
@@ -74,5 +83,12 @@ const renderTodos = (todos, filters) => {
 
     todosDiv.innerHTML = ''
     todosDiv.appendChild(generateSummaryDOM(unfinishedTodos))
-    filteredTodos.forEach((todo) => todosDiv.appendChild(generateTodoDOM(todo)))
+    if (filteredTodos.length) {
+        filteredTodos.forEach((todo) => todosDiv.appendChild(generateTodoDOM(todo)))
+    } else {
+        const emptyMessage = document.createElement('p')
+        emptyMessage.classList.add('empty-message')
+        emptyMessage.textContent = 'No to-dos to show'
+        todosDiv.appendChild(emptyMessage)
+    }
 }

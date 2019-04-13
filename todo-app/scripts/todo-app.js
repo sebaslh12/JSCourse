@@ -17,15 +17,19 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 document.querySelector('#todo-form').addEventListener('submit', (e) => {
     e.preventDefault()
     const formElements = e.target.elements
-    const newTodo = {
-        id: uuidv4(),
-        text: formElements.todoText.value,
-        completed: false
+    const text = formElements.todoText.value
+    if (text.trim().length) {
+        const newTodo = {
+            id: uuidv4(),
+            text,
+            completed: false
+        }
+        todos.push(newTodo)
+        formElements.todoText.value = ''
+        saveTodos(todos)
+        renderTodos(todos, filters)
     }
-    todos.push(newTodo)
-    formElements.todoText.value = ''
-    saveTodos(todos)
-    renderTodos(todos, filters)
+
 })
 
 document.querySelector('#hide-completed').addEventListener('change', (e) => {
