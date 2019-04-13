@@ -16,8 +16,13 @@ const resetEl = document.querySelector('#reset')
 let game
 
 const render = () => {
-    puzzle.textContent = game.puzzle
+    puzzle.innerHTML = ''
     guessesEl.textContent = game.statusMessage
+    game.puzzle.split('').forEach(letter => {
+        const letterEl = document.createElement('span')
+        letterEl.textContent = letter
+        puzzle.append(letterEl)
+    });
 }
 
 const startGame = async () => {
