@@ -1,11 +1,4 @@
-const name = 'Mike'
-console.log(name)
-
-class Hangman {
-    myMethod() {
-        return 'Testing'
-    }
-}
-
-const hangman = new Hangman()
-console.log(hangman.myMethod())
+import { add } from './utilities'
+import { scream } from './scream'
+console.log(add(1, 1))
+console.log(scream('it works'))
