@@ -3,7 +3,7 @@ console.log('utilities.js')
 // Default export, used when only one class or function needs to be exported
 
 const add = (a, b) => a + b
-const name = 'Sebastian'
+const name = 'Jen'
 
 const square = (a) => a * a
 
