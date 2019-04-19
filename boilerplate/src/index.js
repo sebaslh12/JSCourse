@@ -1,4 +1,6 @@
-import { add } from './utilities'
-import { scream } from './scream'
+// Default exports are included without the braces, the name is not important
+import otherSquare, { add, name } from './utilities'
+import scream from './scream'
 console.log(add(1, 1))
-console.log(scream('it works'))
+console.log(scream(name))
+console.log(otherSquare(10))
