@@ -32,6 +32,7 @@ const createNote = () => {
     }
     notes.push(newNote)
     saveNotes()
+    return newNote.id
 }
 
 // Remove a note from the list
@@ -43,7 +44,8 @@ const removeNote = (id) => {
 }
 
 // Sort notes by filter
-const sortNotes = (notes, sortBy) => {
+const sortNotes = (sortBy) => {
+    notes = loadNotes()
     if (sortBy === 'byEdited') {
         return notes.sort((a, b) => {
             if (a.updatedAt > b.updatedAt)
@@ -77,16 +79,18 @@ const updateNote = (id, updates) => {
         return
     }
     if (typeof updates.title === 'string') {
-        note.tite = updates.title
+        note.title = updates.title
         note.updatedAt = moment().valueOf()
     }
     if (typeof updates.body === 'string') {
         note.body = updates.body
         note.updatedAt = moment().valueOf()
     }
-    
+
     //let textContent = generateLastEdited(note.updatedAt)
     saveNotes()
+
+    return note
 }
 
 notes = loadNotes()

@@ -6,11 +6,11 @@ const filters = {
 const getFilters = () => filters
 
 const setFilters = (updates) => {
-    if (typeof upddates.searchText === 'string')
+    if (typeof updates.searchText === 'string')
         filters.searchText = updates.searchText
 
 
-    if (typeof upddates.sortBy === 'string')
+    if (typeof updates.sortBy === 'string')
         filters.sortBy = updates.sortBy
 }
 
