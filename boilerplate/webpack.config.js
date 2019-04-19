@@ -8,5 +8,17 @@ module.exports = {
         // We have to do this because path needs an absolute path and it has to be compatible with everyone in every os
         path: path.resolve(__dirname, 'public/scripts'),
         filename: 'bundle.js'
+    },
+    module: {
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+        }]
     }
 }
