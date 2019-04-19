@@ -1,5 +1,2 @@
-import { getNotes, createNote } from './notes'
-
-console.log(getNotes())
-createNote()
-console.log(getNotes())
+import { getNotes, createNote, removeNote, updateNote } from './notes'
+import { getFilters, setFilters } from './filters'
