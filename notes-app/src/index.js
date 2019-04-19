@@ -24,7 +24,6 @@ document.querySelector('#filter-by').addEventListener('change', (e) => {
 })
 
 window.addEventListener('storage', (e) => {
-    console.log('Storage event', e.key)
     if (e.key === 'notes') {
         renderNotes()
     }
