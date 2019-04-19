@@ -1,6 +1,9 @@
 // Default exports are included without the braces, the name is not important
-import otherSquare, { add, name } from './utilities'
-import scream from './scream'
-console.log(add(33, 1))
-console.log(scream(name))
-console.log(otherSquare(10))
+
+// Named export, used when we need to export multiple functions or classes
+// Default export, used when only one class or function needs to be exported
+
+// Alternative syntax
+// export const add = ..
+// export const name = ..
+// export default const square = ...
