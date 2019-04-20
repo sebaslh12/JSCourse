@@ -26,8 +26,24 @@ team = {
 
 printTeam(team.name, team.coach, ...team.players)
 
-const cities = ['Barcelona', 'Cape Town', 'Bordeaux']
+let cities = ['Barcelona', 'Cape Town', 'Bordeaux']
 // With the spread operator we can clone an array
 const citiesCopy = [...cities]
 // Or to replace push function
 cities = [...cities, 'Santiago']
+
+// It works for clone objects
+
+const house = {
+    bedrooms: 2,
+    bathrooms: 3,
+    yearBuilt: 2017
+}
+
+const newHouse = {
+    ...house,
+    basement: true,
+    yearBuilt: 2019 //this will overwrite the house value
+}
+
+console.log(newHouse)
