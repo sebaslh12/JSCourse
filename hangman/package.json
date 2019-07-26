@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
-    "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.5",
     "babel-polyfill": "^6.26.0",
     "live-server": "^1.2.1",
