@@ -7,7 +7,7 @@ const todo = {
 }
 
 // By putting the property name we create a new variable
-// We can use any variable name by putting propertie: variableName 
+// We can use any variable name by putting property: variableName 
 // we can add properties that doesn't exist and set a default value to them
 // Using the spread operator give us the properties we haven't destructured yet as the object we are destructuring
 const { text: todoText, completed, detail = 'No details provided', ...others } = todo
