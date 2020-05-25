@@ -18,7 +18,7 @@ renderTodos()
 document.querySelector('#search-text').addEventListener('input', (e) => {
     setFilters({
         searchText: e.target.value
-    })
+    });
     renderTodos()
 })
 
