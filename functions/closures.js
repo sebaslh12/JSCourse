@@ -2,7 +2,7 @@
 // Async callbacks work under the closure deifinition
 const myFunction = () => {
     const message = 'This is my message'
-    // printMessage has acces to the lexical scope of myFunction
+    // printMessage has access to the lexical scope of myFunction
     const printMessage = () => {
         console.log(message)
     }
@@ -40,7 +40,7 @@ counter.increment()
 counter.decrement()
 console.log(counter.get())
 
-// This is called curriying, breaking one function with many arguments to many functions with one argument.
+// This is called currying, breaking one function with many arguments to many functions with one argument.
 // They are used to create functions with some base values or event handling
 const createAdder = (a) => {
     return (b) => {
